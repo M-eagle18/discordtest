@@ -1,0 +1,14 @@
+const { Client } = require("discord.js-selfbot-v13");
+
+const client = new Client();
+
+client.on("ready", () => {
+  console.log(`${client.user.username} ready!`);
+  setInterval(() => {
+    const channel = client.channels.cache.get(process.env.channel);
+    if (!channel || channel.type !== 'GUILD_TEXT') return;
+    channel.send("Je dors");
+  }, 2000); // Envoie un message "Je dors" toutes les 2 secondes
+});
+
+client.login(process.env.token);
